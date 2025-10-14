@@ -309,4 +309,128 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+
+    // Scholarship Section Enhancements
+    initializeScholarshipSection();
 });
+
+// Scholarship Section Interactive Features
+function initializeScholarshipSection() {
+    const scholarshipTable = document.querySelector('.scholarship-table');
+    const tableRows = document.querySelectorAll('.scholarship-table tbody tr');
+    const criteriaBox = document.querySelector('.criteria-box');
+    
+    if (!scholarshipTable || !tableRows.length) return;
+
+    // Add smooth scroll reveal animation
+    const scholarshipSection = document.querySelector('.scholarship-section');
+    if (scholarshipSection) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        observer.observe(scholarshipSection);
+    }
+
+    // Enhanced table row interactions
+    tableRows.forEach((row, index) => {
+        // Add staggered animation delay
+        row.style.animationDelay = `${index * 0.1}s`;
+        
+        // Add click interaction for mobile
+        row.addEventListener('click', function() {
+            // Remove active class from all rows
+            tableRows.forEach(r => r.classList.remove('active'));
+            // Add active class to clicked row
+            this.classList.add('active');
+            
+            // Add visual feedback
+            this.style.transform = 'scale(1.02)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 200);
+        });
+
+        // Enhanced hover effects
+        row.addEventListener('mouseenter', function() {
+            // Add subtle glow effect
+            this.style.boxShadow = '0 8px 25px rgba(59, 130, 246, 0.2)';
+            
+            // Highlight amount columns
+            const amountCells = this.querySelectorAll('td:nth-child(2), td:nth-child(4), td:nth-child(6), td:nth-child(8)');
+            amountCells.forEach(cell => {
+                cell.style.transform = 'scale(1.05)';
+                cell.style.fontWeight = '800';
+            });
+        });
+
+        row.addEventListener('mouseleave', function() {
+            this.style.boxShadow = '';
+            
+            const amountCells = this.querySelectorAll('td:nth-child(2), td:nth-child(4), td:nth-child(6), td:nth-child(8)');
+            amountCells.forEach(cell => {
+                cell.style.transform = 'scale(1)';
+                cell.style.fontWeight = '700';
+            });
+        });
+    });
+
+    // Criteria box interaction
+    if (criteriaBox) {
+        criteriaBox.addEventListener('click', function() {
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+        });
+    }
+
+    // Add table sorting functionality (optional enhancement)
+    addTableSorting();
+}
+
+// Optional: Add table sorting functionality
+function addTableSorting() {
+    const table = document.querySelector('.scholarship-table');
+    if (!table) return;
+
+    const headers = table.querySelectorAll('th');
+    
+    headers.forEach((header, index) => {
+        // Only make amount columns sortable
+        if (index % 2 === 1) { // Amount columns (2nd, 4th, 6th, 8th)
+            header.style.cursor = 'pointer';
+            header.style.userSelect = 'none';
+            header.innerHTML += ' <span style="font-size: 10px;">↕</span>';
+            
+            header.addEventListener('click', () => {
+                sortTableByColumn(table, index);
+            });
+        }
+    });
+}
+
+function sortTableByColumn(table, columnIndex) {
+    const tbody = table.querySelector('tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+    
+    const isAscending = table.getAttribute('data-sort-direction') !== 'asc';
+    
+    rows.sort((a, b) => {
+        const aValue = parseInt(a.cells[columnIndex].textContent.replace(/,/g, ''));
+        const bValue = parseInt(b.cells[columnIndex].textContent.replace(/,/g, ''));
+        
+        return isAscending ? aValue - bValue : bValue - aValue;
+    });
+    
+    // Clear tbody and append sorted rows
+    tbody.innerHTML = '';
+    rows.forEach(row => tbody.appendChild(row));
+    
+    // Update sort direction
+    table.setAttribute('data-sort-direction', isAscending ? 'asc' : 'desc');
+}
