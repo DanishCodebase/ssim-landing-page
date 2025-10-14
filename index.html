@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SSIM Landing Page</title>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-N2MJSG4");
+    </script>
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-KV3RWLG");
+    </script>
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-T95BV2D");
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* LBSIM Rankings & Accolades Section */
+      .accolades-section {
+        /* opacity: 0.8; */
+
+        padding: 80px 0;
+        background-image: url("images/LBSIM\ Campus.webp");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        position: relative;
+      }
+      .accolades-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .accolades-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #0f33b4;
+        opacity: 0.85;
+        /* z-index: 1; */
+      }
+
+      .accolades-container h2 {
+        text-align: center;
+        font-size: 40px;
+        font-weight: bold;
+        color: #fff;
+        margin-bottom: 50px;
+      }
+
+      .accolades-grid {
+        display: grid;
+        grid-template-columns: 1fr repeat(5, 1.5fr);
+        align-items: center;
+        text-align: center;
+        gap: 60px 20px;
+        color: #f7b500;
+      }
+      .accolade-header {
+        font-weight: 700;
+        font-size: 28px;
+        letter-spacing: 0.5px;
+      }
+      .accolade-region {
+        font-weight: 700;
+        font-size: 40px;
+        text-align: left;
+        line-height: 1.2;
+      }
+      .accolade-card {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-right: 1px solid #fff;
+      }
+      .award-image {
+        width: 140px;
+        height: auto;
+      }
+      .accolade-rank {
+        position: absolute;
+        font-size: 38px;
+        font-weight: 700;
+        color: #fff;
+        transform: translateY(-10px);
+      }
+      .accolade-rank sup {
+        font-size: 20px;
+        font-weight: 600;
+        margin-left: 2px;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1024px) {
+        .accolades-grid {
+          grid-template-columns: 1fr repeat(5, 1fr);
+          gap: 30px 15px;
+        }
+        .award-image {
+          width: 120px;
+        }
+        .accolade-rank {
+          font-size: 32px;
+        }
+        .accolade-rank sup {
+          font-size: 18px;
+        }
+        .accolade-region {
+          font-size: 22px;
+        }
+      }
+      @media (max-width: 768px) {
+        .accolades-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 40px 20px;
+        }
+        .accolade-header {
+          display: none;
+        }
+        .accolade-region {
+          grid-column: 1 / -1;
+          text-align: center;
+          margin-bottom: -10px;
+        }
+        .accolade-card {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 12px;
+        }
+        .accolade-card::after {
+          content: attr(data-publication);
+          font-weight: 600;
+          font-size: 12px;
+          line-height: 1.2;
+        }
+
+        .accolade-rank {
+          transform: translateY(-20px);
+        }
+
+        .accolades-container h2 {
+          font-size: 32px !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-N2MJSG4"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-KV3RWLG"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-T95BV2D"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Hero Banner Section -->
+    <section class="hero-section" id="hero-banner">
+      <picture>
+        <source
+          media="(min-width: 768px)"
+          srcset="images/lbsim-hero-banner.png"
+        />
+        <source
+          media="(max-width: 767px)"
+          srcset="images/lbsim-banner-sm1.png"
+        />
+        <img
+          src="images/lbsim-hero-banner.png"
+          alt="LBSIM Banner"
+          class="banner-img"
+        />
+      </picture>
+    </section>
+
+    <!-- WHO WE ARE Section -->
+    <section class="who-we-are">
+      <div class="who-we-are-container">
+        <div class="content-wrapper">
+          <!-- Left Column: Text Content -->
+          <div class="text-content">
+            <!-- <div class="subtitle">WHO WE ARE</div> -->
+            <h2 class="main-title">
+              Siva Sivani Institute of Management (SSIM)
+            </h2>
+            <!-- <p class="description">
+              Delhi is among India’s <b>premium private business schools</b>.
+              <b>LBSIM</b> was established in <b>1995</b> to perpetuate the
+              vision and values of
+              <b>Bharat Ratna Shri Lal Bahadur Shastri Ji</b> – India’s
+              <b>2nd Prime Minister</b>, by his son -
+              <b>Shri Anil Shastri ji</b>, former Union Minister and Chairman,
+              Board of Governors. LBSIM is powered by <b>55+ PhD Faculty</b>,
+              <b>6000+ Alumni</b> and <b>100+ Corporates</b>.
+              
+            </p> -->
+            <p class="description">
+              Located in the heart of Hyderabad and Secunderabad, Siva Sivani
+              Institute of Management (SSIM) is a<!-- -->
+              <strong
+                >premier institution with over three decades of
+                excellence</strong
+              >
+              <!-- -->in management education. Renowned for its<!-- -->
+              <strong>strong ethical foundation</strong>, this<!-- -->
+              <strong
+                >SAQS, AIU, NBA, NAAC and AICTE accredited institution</strong
+              >
+              <!-- -->delivers industry-relevant learning through an<!-- -->
+              <strong
+                >innovative curriculum and experienced faculty blending academic
+                and corporate insights</strong
+              >.
+            </p>
+            <!-- <button class="cta-button">DISCOVER MORE</button> -->
+          </div>
+
+          <!-- Right Column: Image with Overlay Card -->
+          <div class="image-content">
+            <div class="image-wrapper">
+              <img
+                src="/images/LBSIM Campus.webp"
+                alt="University Campus"
+                class="campus-image"
+              />
+              <div class="green-border"></div>
+              <div class="overlay-card">
+                <div class="card-icon">
+                  <img
+                    style="width: 50px; height: 50px"
+                    src="/book.png"
+                    alt="30 Years of Legacy"
+                  />
+                </div>
+                <h3 class="card-title">33+ Years of Legacy</h3>
+                <!-- <p class="card-description">
+                  Netus amet congue justo luctus auctor erat dapibus nam sodales
+                  ridiculus duis.
+                </p> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LBSIM Rankings & Accolades -->
+    <section class="hero-section">
+      <picture>
+        <source media="(min-width: 768px)" srcset="images/rankings.webp" />
+        <source media="(max-width: 767px)" srcset="images/rankings-sm.webp" />
+        <img
+          src="images/rankings.webp"
+          alt="LBSIM Rankings"
+          class="banner-img"
+        />
+      </picture>
+    </section>
+
+    <!-- Eligibility & Courses Section -->
+    <section class="eligibility-courses-section">
+      <div class="container" style="background-color: transparent">
+        <!-- Eligibility Section (Left) -->
+        <div class="eligibility-card">
+          <h2 class="card-title" style="text-align: left">
+            Eligibility Requirements
+          </h2>
+          <ul class="eligibility-list">
+            <li>
+              <span class="icon">&#10140;</span>
+              <div>Bachelor’s Degree (3 Year) with min. 50% marks</div>
+            </li>
+            <li>
+              <span class="icon">&#10140;</span>
+              <div>CAT 2025 / XAT 2026 / GMAT (01 Jan 2022 to 31 Jan 2026)</div>
+            </li>
+            <li>
+              <span class="icon">&#10140;</span>
+              <div>
+                Group Discussion, Extempore & Personal Interview (Online and
+                Offline)
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Courses Section (Right) -->
+        <div class="courses-card-section">
+          <h2 class="card-title" style="font-size: 32px">
+            Two Year Full Time PGDM Programmes
+          </h2>
+          <div class="courses-grid-new">
+            <div class="course-card-new">
+              <h3>PGDM General</h3>
+            </div>
+            <div class="course-card-new">
+              <h3>PGDM Financial Management</h3>
+            </div>
+            <div class="course-card-new">
+              <h3>PGDM Research & Business Analytics</h3>
+            </div>
+            <div class="course-card-new">
+              <h3>PGDM Artificial Intelligence & Data Science</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- University Partners Section -->
+    <section class="university-partners">
+      <h2 style="color: #000">PGDM Placement (2023 -2025 Batch)</h2>
+      <!-- Stats Banner Section -->
+      <div class="stats-banner">
+        <div class="stats-container container">
+          <div class="stat-item">
+            <div class="stat-icon">
+              <img
+                style="height: 40px"
+                src="/trophy.png"
+                alt="Highest Salary"
+              />
+            </div>
+            <div class="stat-content">
+              <p class="stat-number">20.00 LPA</p>
+              <p class="stat-text">Highest Salary</p>
+            </div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-icon">
+              <img
+                style="height: 40px"
+                src="/salary.png"
+                alt="Average Salary"
+              />
+            </div>
+            <div class="stat-content">
+              <p class="stat-number">6.91 LPA</p>
+              <p class="stat-text">Average Salary</p>
+            </div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-icon">
+              <img
+                style="height: 40px"
+                src="/office-building.png"
+                alt="Total Recruiters"
+              />
+            </div>
+            <div class="stat-content">
+              <p class="stat-number">148</p>
+              <p class="stat-text">Total Recruiters</p>
+            </div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-icon">
+              <img
+                style="height: 40px"
+                src="/portfolio.png"
+                alt="Number of PPOs"
+              />
+            </div>
+            <div class="stat-content">
+              <p class="stat-number">566</p>
+              <p class="stat-text">Number of PPOs</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3
+        style="
+          text-align: center;
+          font-size: 28px;
+          font-weight: bold;
+          color: #000;
+          margin-bottom: 20px;
+        "
+      >
+        Prominent Recruiters
+      </h3>
+
+      <div class="university-partners-container">
+        <div class="university-grid">
+          <div class="university-logo">
+            <img src="images/placements/1.jpg" alt="1" />
+          </div>
+          <div class="university-logo">
+            <img src="images/placements/2.jpg" alt="2" />
+          </div>
+          <div class="university-logo">
+            <img src="images/placements/3.jpg" alt="3" />
+          </div>
+          <div class="university-logo">
+            <img src="images/placements/4.jpg" alt="4" />
+          </div>
+          <div class="university-logo">
+            <img src="images/placements/5.jpg" alt="5" />
+          </div>
+          <div class="university-logo">
+            <img src="images/placements/6.jpg" alt="6" />
+          </div>
+          <div class="university-logo">
+            <img src="images/placements/7.jpg" alt="7" />
+          </div>
+          <div class="university-logo">
+            <img src="images/placements/8.jpg" alt="8" />
+          </div>
+          <div class="university-logo">
+            <img src="images/placements/9.jpg" alt="9" />
+          </div>
+          <div class="university-logo">
+            <img src="images/placements/10.jpg" alt="10" />
+          </div>
+          <div class="university-logo">
+            <img src="images/placements/11.jpg" alt="11" />
+          </div>
+          <div class="university-logo">
+            <img src="images/placements/12.jpg" alt="12" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--International Collaborations And Linkages Section -->
+    <section class="international-section admission-process-section">
+      <div class="container">
+        <h2 class="section-title">International Collaborations And Linkages</h2>
+        <div class="process-steps">
+          <!-- Step 1 -->
+          <div class="step-card">
+            <div class="step-icon">
+              <img
+                src="/images/international-relations/sbs.webp"
+                alt="Apply Online Icon"
+              />
+            </div>
+            <h3 class="step-title">Sunway University, Malaysia</h3>
+          </div>
+          <!-- Step 2 -->
+          <div class="step-card">
+            <div class="step-icon">
+              <img
+                src="/images/international-relations/2.jpg"
+                alt="Profile Detail Form Icon"
+              />
+            </div>
+            <h3 class="step-title">University of Dubai</h3>
+          </div>
+          <!-- Step 3 -->
+          <div class="step-card">
+            <div class="step-icon">
+              <img
+                src="/images/international-relations/3.jpg"
+                alt="Submit Test Scores Icon"
+              />
+            </div>
+            <h3 class="step-title">Universiti Teknologi Malaysia</h3>
+          </div>
+          <!-- Step 4 -->
+          <div class="step-card">
+            <div class="step-icon">
+              <img
+                src="/images/international-relations/4.jpg"
+                alt="Selection Process Icon"
+              />
+            </div>
+            <h3 class="step-title">Prince of Songkla University</h3>
+          </div>
+          <!-- Step 5 -->
+          <div class="step-card">
+            <div class="step-icon">
+              <img
+                src="/images/international-relations/5.jpg"
+                alt="Check Final Results Icon"
+              />
+            </div>
+            <h3 class="step-title">Telkom University, Indonesia</h3>
+          </div>
+          <!-- Step 6 -->
+          <div class="step-card">
+            <div class="step-icon">
+              <img
+                src="/images/international-relations/6.jpg"
+                alt="Get Admission Offer Icon"
+              />
+            </div>
+            <h3 class="step-title">Pathumthani University (PTU), Thailand</h3>
+          </div>
+          <!-- Step 7 -->
+          <div class="step-card">
+            <div class="step-icon">
+              <img
+                src="/images/international-relations/7.png"
+                alt="Check Final Results Icon"
+              />
+            </div>
+            <h3 class="step-title">
+              Universiti Kebangaan Malaysia, National Univesity of Malaysia
+            </h3>
+          </div>
+          <!-- Step 8 -->
+          <div class="step-card">
+            <div class="step-icon">
+              <img
+                src="/images/international-relations/8.jpg"
+                alt="Start Your Journey Icon"
+              />
+            </div>
+            <h3 class="step-title">
+              College of Business, Northern Illinois University (NIU), Dekalb,
+              Illinois, USA
+            </h3>
+          </div>
+          <!-- Step 9 -->
+          <div class="step-card">
+            <div class="step-icon">
+              <img
+                src="/images/international-relations/9.jpg"
+                alt="Start Your Journey Icon"
+              />
+            </div>
+            <h3 class="step-title">
+              Nanyang Business School, Nanyang Technological University,
+              Singapore
+            </h3>
+          </div>
+          <!-- Step 10 -->
+          <div class="step-card">
+            <div class="step-icon">
+              <img
+                src="/images/international-relations/10.jpg"
+                alt="Start Your Journey Icon"
+              />
+            </div>
+            <h3 class="step-title">Nipissing University, Ontario, Canada</h3>
+          </div>
+          <!-- Step 11 -->
+          <div class="step-card">
+            <div class="step-icon">
+              <img
+                src="/images/international-relations/11.jpg"
+                alt="Start Your Journey Icon"
+              />
+            </div>
+            <h3 class="step-title">
+              European Higher School for Economics & Management (EHSEM),
+              Bulgaria
+            </h3>
+          </div>
+          <!-- Step 12 -->
+          <div class="step-card">
+            <div class="step-icon">
+              <img
+                src="/images/international-relations/12.jpg"
+                alt="Start Your Journey Icon"
+              />
+            </div>
+            <h3 class="step-title">Development Strategy Center, Ujbekistan</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Student Speak Section -->
+    <section class="student-speak-section">
+      <div class="student-speak-container">
+        <h2 class="section-title">Student Speak</h2>
+        <div class="student-slider-wrapper">
+          <div class="student-slider">
+            <div class="student-video-card" data-video-id="gZBuHb0YAec">
+              <div class="video-thumbnail-wrapper">
+                <img
+                  src="https://img.youtube.com/vi/gZBuHb0YAec/hqdefault.jpg"
+                  alt="Video Thumbnail"
+                />
+                <div class="play-button"></div>
+              </div>
+            </div>
+            <div class="student-video-card" data-video-id="yLUOx4EItzM">
+              <div class="video-thumbnail-wrapper">
+                <img
+                  src="https://img.youtube.com/vi/yLUOx4EItzM/hqdefault.jpg"
+                  alt="Video Thumbnail"
+                />
+                <div class="play-button"></div>
+              </div>
+            </div>
+            <div class="student-video-card" data-video-id="jBkX4sKgChc">
+              <div class="video-thumbnail-wrapper">
+                <img
+                  src="https://img.youtube.com/vi/jBkX4sKgChc/hqdefault.jpg"
+                  alt="Video Thumbnail"
+                />
+                <div class="play-button"></div>
+              </div>
+            </div>
+            <div class="student-video-card" data-video-id="ZdRFzKNqOp8">
+              <div class="video-thumbnail-wrapper">
+                <img
+                  src="https://img.youtube.com/vi/ZdRFzKNqOp8/hqdefault.jpg"
+                  alt="Video Thumbnail"
+                />
+                <div class="play-button"></div>
+              </div>
+            </div>
+            <div class="student-video-card" data-video-id="1C7qb5uLxe4">
+              <div class="video-thumbnail-wrapper">
+                <img
+                  src="https://img.youtube.com/vi/1C7qb5uLxe4/hqdefault.jpg"
+                  alt="Video Thumbnail"
+                />
+                <div class="play-button"></div>
+              </div>
+            </div>
+            <div class="student-video-card" data-video-id="XPXqt8iZgYo">
+              <div class="video-thumbnail-wrapper">
+                <img
+                  src="https://img.youtube.com/vi/XPXqt8iZgYo/hqdefault.jpg"
+                  alt="Video Thumbnail"
+                />
+                <div class="play-button"></div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev-btn">&lt;</button>
+          <button class="slider-btn next-btn">&gt;</button>
+        </div>
+        <div class="slider-indicators">
+          <!-- Indicators will be injected here by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Alumni Speak Section -->
+    <section class="student-speak-section alumni-speak-section">
+      <div class="student-speak-container">
+        <h2 class="section-title">Alumni Speak</h2>
+        <div class="student-slider-wrapper">
+          <div class="student-slider">
+            <div class="student-video-card" data-video-id="Gz5Vpjt96ZY">
+              <div class="video-thumbnail-wrapper">
+                <img
+                  src="https://img.youtube.com/vi/Gz5Vpjt96ZY/hqdefault.jpg"
+                  alt="Video Thumbnail"
+                />
+                <div class="play-button"></div>
+              </div>
+            </div>
+            <div class="student-video-card" data-video-id="bB6iVfoEBMw">
+              <div class="video-thumbnail-wrapper">
+                <img
+                  src="https://img.youtube.com/vi/bB6iVfoEBMw/hqdefault.jpg"
+                  alt="Video Thumbnail"
+                />
+                <div class="play-button"></div>
+              </div>
+            </div>
+            <div class="student-video-card" data-video-id="qcAkqzskWzI">
+              <div class="video-thumbnail-wrapper">
+                <img
+                  src="https://img.youtube.com/vi/qcAkqzskWzI/hqdefault.jpg"
+                  alt="Video Thumbnail"
+                />
+                <div class="play-button"></div>
+              </div>
+            </div>
+            <div class="student-video-card" data-video-id="xJoXchFct80">
+              <div class="video-thumbnail-wrapper">
+                <img
+                  src="https://img.youtube.com/vi/xJoXchFct80/hqdefault.jpg"
+                  alt="Video Thumbnail"
+                />
+                <div class="play-button"></div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev-btn">&lt;</button>
+          <button class="slider-btn next-btn">&gt;</button>
+        </div>
+        <div class="slider-indicators">
+          <!-- Indicators will be injected here by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="video-modal">
+      <div class="video-modal-content">
+        <span class="close-modal-btn">&times;</span>
+        <iframe
+          id="youtube-video-iframe"
+          width="560"
+          height="315"
+          src=""
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+
+    <!-- Admission Process Section -->
+    <section class="admission-process-section">
+      <div class="container">
+        <h2 class="section-title">Admission Process</h2>
+        <div class="process-steps">
+          <!-- Step 1 -->
+          <div class="step-card">
+            <div class="step-label">
+              <span>STEP</span>
+              <strong>01</strong>
+            </div>
+            <div class="step-icon">
+              <img
+                src="/images/process/apply-online-2026.png"
+                alt="Apply Online Icon"
+              />
+            </div>
+            <h3 class="step-title">Register Yourself</h3>
+            <!-- <p class="step-description">
+              Fill out the common application form for IMT Ghaziabad, Nagpur,
+              and Hyderabad. Application fee:
+              <strong>INR 3,500 + applicable charges.</strong>
+            </p> -->
+          </div>
+          <!-- Step 2 -->
+          <div class="step-card">
+            <div class="step-label">
+              <span>STEP</span>
+              <strong>02</strong>
+            </div>
+            <div class="step-icon">
+              <img
+                src="/images/process/complete-form-2026.png"
+                alt="Profile Detail Form Icon"
+              />
+            </div>
+            <h3 class="step-title">Verify Mobile</h3>
+            <!-- <p class="step-description">
+              Upload all required supporting documents in the Profile Detail
+              form to complete your application.
+            </p> -->
+          </div>
+          <!-- Step 3 -->
+          <div class="step-card">
+            <div class="step-label">
+              <span>STEP</span>
+              <strong>03</strong>
+            </div>
+            <div class="step-icon">
+              <img
+                src="/images/process/entrance-2026.png"
+                alt="Submit Test Scores Icon"
+              />
+            </div>
+            <h3 class="step-title">Fill Application Online</h3>
+            <!-- <p class="step-description">
+              Provide valid <strong>CAT / XAT / GMAT / CMAT*</strong> scores as
+              applicable.
+              <br />
+              <small>(*Note: CMAT is accepted only for IMT Nagpur).</small>
+            </p> -->
+          </div>
+          <!-- Step 4 -->
+          <div class="step-card">
+            <div class="step-label">
+              <span>STEP</span>
+              <strong>04</strong>
+            </div>
+            <div class="step-icon">
+              <img
+                src="/images/process/interview-2026.png"
+                alt="Selection Process Icon"
+              />
+            </div>
+            <h3 class="step-title">Pay Application Fee</h3>
+            <!-- <p class="step-description">
+              Shortlisted candidates will be invited for the offline common
+              selection process.
+            </p> -->
+          </div>
+          <!-- Step 5 -->
+          <div class="step-card">
+            <div class="step-label">
+              <span>STEP</span>
+              <strong>05</strong>
+            </div>
+            <div class="step-icon">
+              <img
+                src="/images/process/result-2026.png"
+                alt="Check Final Results Icon"
+              />
+            </div>
+            <h3 class="step-title">Upload Docs & Exam Score</h3>
+            <!-- <p class="step-description">
+              Admission offers will be announced after the evaluation process is
+              completed.
+            </p> -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fixed Apply Now Button -->
+    <a href="#hero-banner" class="fixed-apply-btn"
+      ><span style="display: flex; align-items: center; justify-content: center"
+        ><img style="height: 20px" src="/graduation-hat.png" alt="Apply Now"
+      /></span>
+      Apply Now</a
+    >
+
+    <!-- Internal Immersions -->
+    <!-- <section class="immersions-section">
+      <div class="immersions-container container">
+        <h2>Internal Immersions</h2>
+        <div class="immersions-grid">
+          <div class="immersion-card large">
+            <img
+              src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80"
+              alt="Taj Mahal"
+            />
+            <div class="caption">Taj Mahal</div>
+          </div>
+          <div class="immersion-card">
+            <img
+              src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80"
+              alt="Gateway of India"
+            />
+            <div class="caption">Gateway of India</div>
+          </div>
+          <div class="immersion-card">
+            <img
+              src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=800&q=80"
+              alt="Qutub Minar"
+            />
+            <div class="caption">Qutub Minar</div>
+          </div>
+          <div class="immersion-card">
+            <img
+              src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80"
+              alt="Amer Fort"
+            />
+            <div class="caption">Amer Fort</div>
+          </div>
+          <div class="immersion-card">
+            <img
+              src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80"
+              alt="Mysore Palace"
+            />
+            <div class="caption">Mysore Palace</div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <script src="script.js"></script>
+  </body>
+</html>
