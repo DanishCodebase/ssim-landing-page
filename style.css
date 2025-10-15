@@ -4143,10 +4143,10 @@ body {
     font-size: 14px;
   }
 
-  .company-logo-img {
+  /* .company-logo-img {
     max-height: 28px;
     max-width: 80px;
-  }
+  } */
 }
 
 @media (max-width: 480px) {
@@ -4179,8 +4179,8 @@ body {
   }
 
   .alumni-image {
-    width: 70px;
-    height: 70px;
+    width: 100px;
+    height: 100px;
   }
 
   .alumni-name {
@@ -4192,8 +4192,7 @@ body {
   }
 
   .company-logo-img {
-    max-height: 24px;
-    max-width: 70px;
+    height: 60px;
   }
 }
 
