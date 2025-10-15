@@ -3379,24 +3379,24 @@ body {
 }
 
 .fixed-apply-btn::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.4),
-        transparent
-    );
-    animation: flash 3s infinite 1s;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  animation: flash 3s infinite 1s;
 }
 
 .fixed-apply-btn.show {
-    opacity: 1;
-    visibility: visible;
+  opacity: 1;
+  visibility: visible;
 }
 
 .fixed-apply-btn:hover {
@@ -3415,7 +3415,6 @@ body {
     text-align: center;
     bottom: 1px;
     right: 50%;
-
   }
 
   .fixed-apply-btn.show {
@@ -3461,7 +3460,7 @@ body {
 }
 
 .scholarship-title::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -12px;
   left: 50%;
@@ -3595,7 +3594,7 @@ body {
   .scholarship-table-container {
     padding: 40px 30px;
   }
-  
+
   .scholarship-title {
     font-size: 42px;
   }
@@ -3605,43 +3604,43 @@ body {
   .scholarship-section {
     padding: 60px 0;
   }
-  
+
   .scholarship-title {
     font-size: 36px;
     margin-bottom: 25px;
   }
-  
+
   .criteria-box {
     padding: 12px 24px;
     font-size: 15px;
   }
-  
+
   .scholarship-description {
     font-size: 15px;
     padding: 0 15px;
   }
-  
+
   .scholarship-table-container {
     padding: 30px 20px;
     margin: 0 15px;
   }
-  
+
   .table-title {
     font-size: 20px;
     padding: 20px;
     margin-bottom: 25px;
   }
-  
+
   .scholarship-table {
     font-size: 16px;
     min-width: 800px;
   }
-  
+
   .scholarship-table th,
   .scholarship-table td {
     padding: 14px 10px;
   }
-  
+
   .scholarship-table th {
     font-size: 15px;
   }
@@ -3651,27 +3650,31 @@ body {
   .scholarship-title {
     font-size: 32px;
   }
-  
+
   .scholarship-table-container {
     padding: 25px 15px;
     margin: 0 10px;
   }
-  
+
   .table-title {
     font-size: 18px;
     padding: 18px;
   }
-  
+
   .scholarship-table {
     /* font-size: 12px; */
     min-width: 700px;
   }
-  
+
   .scholarship-table th,
   .scholarship-table td {
     padding: 12px 8px;
   }
-  
+
+  .scholarship-header {
+    padding: 0 20px;
+  }
+
   /* .scholarship-table th {
     font-size: 11px;
   } */
@@ -3683,12 +3686,12 @@ body {
     font-size: 15px;
     min-width: 850px;
   }
-  
+
   .academic-table th,
   .academic-table td {
     padding: 18px 16px;
   }
-  
+
   .criteria-cell {
     padding: 20px 16px;
   }
@@ -3699,25 +3702,25 @@ body {
     font-size: 14px;
     min-width: 750px;
   }
-  
+
   .academic-table th {
     font-size: 13px;
     padding: 16px 12px;
   }
-  
+
   .academic-table td {
     padding: 16px 12px;
   }
-  
+
   .criteria-cell {
     padding: 18px 12px;
     font-size: 13px;
   }
-  
+
   .amount-cell {
     font-size: 14px;
   }
-  
+
   .total-cell {
     font-size: 15px;
   }
@@ -3728,25 +3731,25 @@ body {
     font-size: 13px;
     min-width: 650px;
   }
-  
+
   .academic-table th {
     font-size: 12px;
     padding: 14px 10px;
   }
-  
+
   .academic-table td {
     padding: 14px 10px;
   }
-  
+
   .criteria-cell {
     padding: 16px 10px;
     font-size: 12px;
   }
-  
+
   .amount-cell {
     font-size: 13px;
   }
-  
+
   .total-cell {
     font-size: 14px;
   }
