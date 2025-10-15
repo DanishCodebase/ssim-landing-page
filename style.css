@@ -3561,7 +3561,7 @@ body {
 
 .scholarship-table td {
   padding: 18px 16px;
-  text-align: center;
+  /* text-align: center; */
   color: #374151;
   border-right: 1px solid #f1f5f9;
   border-bottom: 1px solid #f8fafc;
@@ -3714,7 +3714,7 @@ body {
 
   .criteria-cell {
     padding: 18px 12px;
-    font-size: 13px;
+    /* font-size: 13px; */
   }
 
   .amount-cell {
@@ -3743,7 +3743,7 @@ body {
 
   .criteria-cell {
     padding: 16px 10px;
-    font-size: 12px;
+    /* font-size: 12px; */
   }
 
   .amount-cell {
