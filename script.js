@@ -312,6 +312,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Scholarship Section Enhancements
     initializeScholarshipSection();
+    
+    // Alumni Section Enhancements
+    initializeAlumniSection();
 });
 
 // Scholarship Section Interactive Features
@@ -424,4 +427,57 @@ function sortTableByColumn(table, columnIndex) {
     
     // Update sort direction
     table.setAttribute('data-sort-direction', isAscending ? 'asc' : 'desc');
+}
+
+// Alumni Section Interactive Features
+function initializeAlumniSection() {
+    const alumniSection = document.querySelector('.alumni-testimonials-section');
+    const alumniCards = document.querySelectorAll('.alumni-card');
+    
+    if (!alumniSection || !alumniCards.length) return;
+
+    // Add smooth scroll reveal animation
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    observer.observe(alumniSection);
+
+    // Enhanced card interactions
+    alumniCards.forEach((card, index) => {
+        // Add staggered animation delay
+        card.style.animationDelay = `${index * 0.1}s`;
+        
+        // Add click interaction for mobile
+        card.addEventListener('click', function() {
+            // Remove active class from all cards
+            alumniCards.forEach(c => c.classList.remove('active'));
+            // Add active class to clicked card
+            this.classList.add('active');
+        });
+
+        // Enhanced hover effects
+        card.addEventListener('mouseenter', function() {
+            // Add subtle glow effect
+            this.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.15)';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)';
+        });
+    });
+
+    // Add parallax effect to background
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const parallax = alumniSection.querySelector('.alumni-testimonials-section::before');
+        if (parallax) {
+            const speed = scrolled * 0.5;
+            parallax.style.transform = `translateY(${speed}px)`;
+        }
+    });
 }

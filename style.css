@@ -3913,3 +3913,245 @@ body {
   background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
   color: #1e40af;
 }
+
+/* Alumni Testimonials Section */
+.alumni-testimonials-section {
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+  padding: 80px 0;
+  position: relative;
+}
+
+.alumni-testimonials-section .container {
+  padding: 0;
+}
+
+.alumni-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.alumni-header .section-title {
+  font-size: 42px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+
+.section-subtitle {
+  font-size: 16px;
+  color: #64748b;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+  font-weight: 400;
+}
+
+.alumni-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.alumni-card {
+  background: transparent;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: all 0.3s ease;
+  border-radius: 12px;
+}
+
+.alumni-card:hover {
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.alumni-image-container {
+  flex-shrink: 0;
+}
+
+.alumni-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.alumni-card:hover .alumni-image {
+  border-color: #3b82f6;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+}
+
+.alumni-info {
+  flex: 1;
+  text-align: center;
+}
+
+.alumni-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.alumni-designation {
+  font-size: 14px;
+  color: #3b82f6;
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Alumni Section Responsive Design */
+@media (max-width: 1024px) {
+  .alumni-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+  
+  .alumni-header .section-title {
+    font-size: 38px;
+  }
+}
+
+@media (max-width: 768px) {
+  .alumni-testimonials-section {
+    padding: 60px 0;
+  }
+  
+  .alumni-header {
+    margin-bottom: 50px;
+  }
+  
+  .alumni-header .section-title {
+    font-size: 32px;
+  }
+  
+  .section-subtitle {
+    font-size: 15px;
+  }
+  
+  .alumni-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 500px;
+  }
+  
+  .alumni-card {
+    padding: 15px;
+    gap: 15px;
+  }
+  
+  .alumni-image {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .alumni-name {
+    font-size: 16px;
+  }
+  
+  .alumni-designation {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .alumni-testimonials-section {
+    padding: 50px 0;
+  }
+  
+  .alumni-header {
+    margin-bottom: 40px;
+  }
+  
+  .alumni-header .section-title {
+    font-size: 28px;
+  }
+  
+  .section-subtitle {
+    font-size: 14px;
+    padding: 0 20px;
+  }
+  
+  .alumni-grid {
+    gap: 15px;
+    max-width: 100%;
+    padding: 0 20px;
+  }
+  
+  .alumni-card {
+    padding: 12px;
+    gap: 12px;
+  }
+  
+  .alumni-image {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .alumni-name {
+    font-size: 15px;
+  }
+  
+  .alumni-designation {
+    font-size: 12px;
+  }
+}
+
+/* Alumni Section Animation Classes */
+.alumni-testimonials-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.alumni-testimonials-section.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.alumni-card {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideInCard 0.6s ease forwards;
+}
+
+@keyframes slideInCard {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Active card state */
+.alumni-card.active {
+  transform: translateY(-12px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15) !important;
+}
+
+.alumni-card.active::before {
+  opacity: 1;
+}
+
+/* Focus states for accessibility */
+.alumni-card:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 4px;
+}
+
+/* Smooth transitions for all interactive elements */
+.alumni-card,
+.alumni-image,
+.company-logo,
+.company-logo-img {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
