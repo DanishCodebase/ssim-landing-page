@@ -314,7 +314,9 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeScholarshipSection();
     
     // Alumni Section Enhancements
-    initializeAlumniSection();
+    setTimeout(() => {
+        initializeAlumniSlider();
+    }, 100);
 });
 
 // Scholarship Section Interactive Features
@@ -429,55 +431,235 @@ function sortTableByColumn(table, columnIndex) {
     table.setAttribute('data-sort-direction', isAscending ? 'asc' : 'desc');
 }
 
-// Alumni Section Interactive Features
-function initializeAlumniSection() {
-    const alumniSection = document.querySelector('.alumni-testimonials-section');
-    const alumniCards = document.querySelectorAll('.alumni-card');
+// Alumni Slider Interactive Features
+function initializeAlumniSlider() {
+    const slider = document.querySelector('.alumni-slider');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    const pagination = document.querySelector('.slider-pagination');
     
-    if (!alumniSection || !alumniCards.length) return;
-
-    // Add smooth scroll reveal animation
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
-            }
+    if (!slider || !prevBtn || !nextBtn || !pagination) {
+        console.error('Alumni slider elements not found:', {
+            slider: !!slider,
+            prevBtn: !!prevBtn,
+            nextBtn: !!nextBtn,
+            pagination: !!pagination
         });
-    }, { threshold: 0.1 });
-    
-    observer.observe(alumniSection);
+        return;
+    }
 
-    // Enhanced card interactions
-    alumniCards.forEach((card, index) => {
-        // Add staggered animation delay
-        card.style.animationDelay = `${index * 0.1}s`;
+    const cards = slider.querySelectorAll('.alumni-card');
+    const totalCards = cards.length;
+    let currentSlide = 0;
+    let cardsPerSlide = 4; // Default for large screens
+
+    // Function to update cards per slide based on screen size
+    function updateCardsPerSlide() {
+        if (window.innerWidth <= 480) {
+            cardsPerSlide = 1;
+        } else if (window.innerWidth <= 768) {
+            cardsPerSlide = 2;
+        } else if (window.innerWidth <= 1200) {
+            cardsPerSlide = 3;
+        } else {
+            cardsPerSlide = 4;
+        }
+    }
+
+    // Function to calculate total slides
+    function getTotalSlides() {
+        return Math.ceil(totalCards / cardsPerSlide);
+    }
+
+    // Function to update slider position
+    function updateSlider() {
+        const slideWidth = 100 / cardsPerSlide;
+        const translateX = -(currentSlide * slideWidth);
+        slider.style.transform = `translateX(${translateX}%)`;
         
-        // Add click interaction for mobile
-        card.addEventListener('click', function() {
-            // Remove active class from all cards
-            alumniCards.forEach(c => c.classList.remove('active'));
-            // Add active class to clicked card
-            this.classList.add('active');
-        });
+        // Update pagination
+        updatePagination();
+        
+        // Update navigation buttons
+        updateNavigationButtons();
+    }
 
-        // Enhanced hover effects
-        card.addEventListener('mouseenter', function() {
-            // Add subtle glow effect
-            this.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.15)';
-        });
+    // Function to update pagination dots
+    function updatePagination() {
+        pagination.innerHTML = '';
+        const totalSlides = getTotalSlides();
+        
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('button');
+            dot.className = `pagination-dot ${i === currentSlide ? 'active' : ''}`;
+            dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+            
+            dot.addEventListener('click', () => {
+                currentSlide = i;
+                updateSlider();
+            });
+            
+            pagination.appendChild(dot);
+        }
+    }
 
-        card.addEventListener('mouseleave', function() {
-            this.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)';
-        });
+    // Function to update navigation buttons
+    function updateNavigationButtons() {
+        const totalSlides = getTotalSlides();
+        prevBtn.disabled = currentSlide === 0;
+        nextBtn.disabled = currentSlide === totalSlides - 1;
+    }
+
+    // Navigation event listeners
+    prevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (currentSlide > 0) {
+            currentSlide--;
+            updateSlider();
+        }
     });
 
-    // Add parallax effect to background
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const parallax = alumniSection.querySelector('.alumni-testimonials-section::before');
-        if (parallax) {
-            const speed = scrolled * 0.5;
-            parallax.style.transform = `translateY(${speed}px)`;
+    nextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const totalSlides = getTotalSlides();
+        if (currentSlide < totalSlides - 1) {
+            currentSlide++;
+            updateSlider();
         }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft' && currentSlide > 0) {
+            currentSlide--;
+            updateSlider();
+        } else if (e.key === 'ArrowRight') {
+            const totalSlides = getTotalSlides();
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlider();
+            }
+        }
+    });
+
+    // Touch/swipe support
+    let startX = 0;
+    let endX = 0;
+    let isDragging = false;
+
+    slider.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+        stopAutoPlay();
+    });
+
+    slider.addEventListener('touchmove', (e) => {
+        if (isDragging) {
+            e.preventDefault();
+        }
+    });
+
+    slider.addEventListener('touchend', (e) => {
+        if (isDragging) {
+            endX = e.changedTouches[0].clientX;
+            handleSwipe();
+            isDragging = false;
+            startAutoPlay();
+        }
+    });
+
+    function handleSwipe() {
+        const swipeThreshold = 30;
+        const diff = startX - endX;
+
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0 && currentSlide < getTotalSlides() - 1) {
+                // Swipe left - next slide
+                currentSlide++;
+                updateSlider();
+            } else if (diff < 0 && currentSlide > 0) {
+                // Swipe right - previous slide
+                currentSlide--;
+                updateSlider();
+            }
+        }
+    }
+
+    // Auto-play functionality (optional)
+    let autoPlayInterval;
+    
+    function startAutoPlay() {
+        autoPlayInterval = setInterval(() => {
+            const totalSlides = getTotalSlides();
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        }, 5000); // Change slide every 5 seconds
+    }
+
+    function stopAutoPlay() {
+        clearInterval(autoPlayInterval);
+    }
+
+    // Pause auto-play on hover
+    const sliderContainer = document.querySelector('.alumni-slider-container');
+    if (sliderContainer) {
+        sliderContainer.addEventListener('mouseenter', stopAutoPlay);
+        sliderContainer.addEventListener('mouseleave', startAutoPlay);
+    }
+
+    // Initialize slider
+    updateCardsPerSlide();
+    updateSlider();
+    startAutoPlay();
+    
+    // Debug logging
+    console.log('Alumni slider initialized:', {
+        totalCards,
+        cardsPerSlide,
+        totalSlides: getTotalSlides(),
+        currentSlide
+    });
+
+    // Update on resize
+    window.addEventListener('resize', () => {
+        updateCardsPerSlide();
+        currentSlide = 0; // Reset to first slide
+        updateSlider();
+    });
+
+    // Add entrance animation
+    const alumniSection = document.querySelector('.alumni-testimonials-section');
+    if (alumniSection) {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                        // Add staggered animation to cards
+                        cards.forEach((card, index) => {
+                            card.style.animationDelay = `${index * 0.1}s`;
+                        });
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        observer.observe(alumniSection);
+    }
+
+    // Add hover effects to cards
+    cards.forEach((card) => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-8px) scale(1.02)';
+            card.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.15)';
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0) scale(1)';
+            card.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)';
+        });
     });
 }
