@@ -3476,7 +3476,7 @@ body {
   background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
   color: #fbbf24;
   padding: 14px 28px;
-  border-radius: 8px;
+  /* border-radius: 8px; */
   font-weight: 600;
   font-size: 16px;
   margin-bottom: 30px;
