@@ -1154,9 +1154,9 @@ body {
 }
 
 .alumni-header {
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; */
   margin-bottom: 12px;
 }
 
@@ -2653,9 +2653,9 @@ body {
 }
 
 .alumni-header {
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; */
   margin-bottom: 12px;
 }
 
@@ -3917,11 +3917,38 @@ body {
 /* Alumni Testimonials Section */
 .alumni-testimonials-section {
   background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
-  padding: 80px 0;
+  /* padding: 80px 0; */
   position: relative;
+  overflow: hidden;
 }
 
 .alumni-testimonials-section .container {
+  background: none;
+}
+
+.alumni-testimonials-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+      circle at 20% 50%,
+      rgba(59, 130, 246, 0.05) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(139, 92, 246, 0.05) 0%,
+      transparent 50%
+    );
+  z-index: 1;
+}
+
+.alumni-testimonials-section .container {
+  position: relative;
+  z-index: 2;
   padding: 0;
 }
 
@@ -3951,72 +3978,126 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 30px;
-  max-width: 1300px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 .alumni-card {
-  background: transparent;
-  padding: 20px;
+  background: white;
+  padding: 30px 20px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 20px;
-  transition: all 0.3s ease;
-  border-radius: 12px;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f1f5f9;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.alumni-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .alumni-card:hover {
-  background: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  transform: translateY(-2px);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  border-color: #e2e8f0;
+}
+
+.alumni-card:hover::before {
+  opacity: 1;
 }
 
 .alumni-image-container {
-  flex-shrink: 0;
+  margin-bottom: 20px;
+  position: relative;
 }
 
 .alumni-image {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #e2e8f0;
+  border: 4px solid #f8fafc;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
 
 .alumni-card:hover .alumni-image {
-  border-color: #3b82f6;
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  border-color: #e2e8f0;
 }
 
 .alumni-info {
-  flex: 1;
-  text-align: center;
+  width: 100%;
 }
 
 .alumni-name {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   color: #1e293b;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
   line-height: 1.3;
 }
 
 .alumni-designation {
-  font-size: 14px;
+  font-size: 15px;
   color: #3b82f6;
   font-weight: 500;
   line-height: 1.4;
-  margin: 0;
+  margin: 0 0 20px 0;
+}
+
+.company-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 0px;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.alumni-card:hover .company-logo {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border-color: #bfdbfe;
+}
+
+.company-logo-img {
+  height: 50px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.alumni-card:hover .company-logo-img {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(1.05);
 }
 
 /* Alumni Section Responsive Design */
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .alumni-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 25px;
   }
-  
+
   .alumni-header .section-title {
     font-size: 38px;
   }
@@ -4026,41 +4107,45 @@ body {
   .alumni-testimonials-section {
     padding: 60px 0;
   }
-  
+
   .alumni-header {
     margin-bottom: 50px;
   }
-  
+
   .alumni-header .section-title {
     font-size: 32px;
   }
-  
+
   .section-subtitle {
     font-size: 15px;
   }
-  
+
   .alumni-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-    max-width: 500px;
+    max-width: 600px;
   }
-  
+
   .alumni-card {
-    padding: 15px;
-    gap: 15px;
+    padding: 25px 15px;
   }
-  
+
   .alumni-image {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
   }
-  
+
   .alumni-name {
-    font-size: 16px;
+    font-size: 18px;
   }
-  
+
   .alumni-designation {
-    font-size: 13px;
+    font-size: 14px;
+  }
+
+  .company-logo-img {
+    max-height: 28px;
+    max-width: 80px;
   }
 }
 
@@ -4068,42 +4153,47 @@ body {
   .alumni-testimonials-section {
     padding: 50px 0;
   }
-  
+
   .alumni-header {
     margin-bottom: 40px;
   }
-  
+
   .alumni-header .section-title {
     font-size: 28px;
   }
-  
+
   .section-subtitle {
     font-size: 14px;
     padding: 0 20px;
   }
-  
+
   .alumni-grid {
-    gap: 15px;
-    max-width: 100%;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 400px;
     padding: 0 20px;
   }
-  
+
   .alumni-card {
-    padding: 12px;
-    gap: 12px;
+    padding: 20px 15px;
   }
-  
+
   .alumni-image {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
   }
-  
+
   .alumni-name {
-    font-size: 15px;
+    font-size: 16px;
   }
-  
+
   .alumni-designation {
-    font-size: 12px;
+    font-size: 13px;
+  }
+
+  .company-logo-img {
+    max-height: 24px;
+    max-width: 70px;
   }
 }
 
