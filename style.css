@@ -1432,6 +1432,7 @@ body {
 
 .international-section .process-steps {
   display: flex;
+  justify-content: center;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
@@ -3087,6 +3088,10 @@ body {
 }
 
 /* Slider Controls */
+.international-section .slider-controls {
+  display: none;
+}
+
 .slider-controls {
   display: flex;
   justify-content: center;
@@ -3349,6 +3354,14 @@ body {
   }
   .video-modal-content iframe {
     height: 250px;
+  }
+
+  .international-section .process-steps {
+    justify-content: unset;
+  }
+
+  .international-section .slider-controls {
+    display: flex;
   }
 }
 
