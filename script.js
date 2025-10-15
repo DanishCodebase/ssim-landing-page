@@ -336,7 +336,7 @@ function initializeScholarshipSection() {
         observer.observe(scholarshipSection);
     }
 
-    // Enhanced table row interactions
+    // Clean table row interactions
     tableRows.forEach((row, index) => {
         // Add staggered animation delay
         row.style.animationDelay = `${index * 0.1}s`;
@@ -347,35 +347,6 @@ function initializeScholarshipSection() {
             tableRows.forEach(r => r.classList.remove('active'));
             // Add active class to clicked row
             this.classList.add('active');
-            
-            // Add visual feedback
-            this.style.transform = 'scale(1.02)';
-            setTimeout(() => {
-                this.style.transform = '';
-            }, 200);
-        });
-
-        // Enhanced hover effects
-        row.addEventListener('mouseenter', function() {
-            // Add subtle glow effect
-            this.style.boxShadow = '0 8px 25px rgba(59, 130, 246, 0.2)';
-            
-            // Highlight amount columns
-            const amountCells = this.querySelectorAll('td:nth-child(2), td:nth-child(4), td:nth-child(6), td:nth-child(8)');
-            amountCells.forEach(cell => {
-                cell.style.transform = 'scale(1.05)';
-                cell.style.fontWeight = '800';
-            });
-        });
-
-        row.addEventListener('mouseleave', function() {
-            this.style.boxShadow = '';
-            
-            const amountCells = this.querySelectorAll('td:nth-child(2), td:nth-child(4), td:nth-child(6), td:nth-child(8)');
-            amountCells.forEach(cell => {
-                cell.style.transform = 'scale(1)';
-                cell.style.fontWeight = '700';
-            });
         });
     });
 
