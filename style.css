@@ -3561,12 +3561,16 @@ body {
 
 .scholarship-table td {
   padding: 18px 16px;
-  /* text-align: center; */
+  text-align: center;
   color: #374151;
   border-right: 1px solid #f1f5f9;
   border-bottom: 1px solid #f8fafc;
   font-weight: 500;
   transition: background-color 0.3s ease;
+}
+
+.academic-table td:first-child {
+  text-align: left !important;
 }
 
 .scholarship-table td:last-child {
