@@ -316,7 +316,16 @@ document.addEventListener("DOMContentLoaded", () => {
     // Alumni Section Enhancements
     setTimeout(() => {
         initializeAlumniSlider();
-    }, 100);
+    }, 200);
+    
+    // Additional initialization after DOM is fully loaded
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                initializeAlumniSlider();
+            }, 100);
+        });
+    }
 });
 
 // Scholarship Section Interactive Features
@@ -477,6 +486,14 @@ function initializeAlumniSlider() {
         const translateX = -(currentSlide * slideWidth);
         slider.style.transform = `translateX(${translateX}%)`;
         
+        // Debug logging
+        console.log('Slider update:', {
+            currentSlide,
+            cardsPerSlide,
+            slideWidth,
+            translateX
+        });
+        
         // Update pagination
         updatePagination();
         
@@ -514,6 +531,7 @@ function initializeAlumniSlider() {
     prevBtn.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
+        console.log('Prev button clicked, currentSlide:', currentSlide);
         if (currentSlide > 0) {
             currentSlide--;
             updateSlider();
@@ -524,6 +542,7 @@ function initializeAlumniSlider() {
         e.preventDefault();
         e.stopPropagation();
         const totalSlides = getTotalSlides();
+        console.log('Next button clicked, currentSlide:', currentSlide, 'totalSlides:', totalSlides);
         if (currentSlide < totalSlides - 1) {
             currentSlide++;
             updateSlider();
@@ -621,6 +640,18 @@ function initializeAlumniSlider() {
         totalSlides: getTotalSlides(),
         currentSlide
     });
+    
+    // Force initial update
+    setTimeout(() => {
+        updateSlider();
+    }, 100);
+    
+    // Test function for debugging
+    window.testSlider = () => {
+        console.log('Testing slider...');
+        currentSlide = (currentSlide + 1) % getTotalSlides();
+        updateSlider();
+    };
 
     // Update on resize
     window.addEventListener('resize', () => {

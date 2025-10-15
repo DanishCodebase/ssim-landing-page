@@ -3979,6 +3979,7 @@ body {
   position: relative;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 60px;
 }
 
 .alumni-slider-wrapper {
@@ -3991,6 +3992,8 @@ body {
   display: flex;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   gap: 30px;
+  touch-action: pan-y;
+  will-change: transform;
 }
 
 .alumni-card {
@@ -4139,11 +4142,11 @@ body {
 }
 
 .prev-btn {
-  left: -25px;
+  left: 10px;
 }
 
 .next-btn {
-  right: -25px;
+  right: 10px;
 }
 
 .slider-nav:disabled {
@@ -4217,6 +4220,10 @@ body {
 
 /* Alumni Slider Responsive Design */
 @media (max-width: 1200px) {
+  .alumni-slider-container {
+    padding: 0 50px;
+  }
+  
   .alumni-card {
     flex: 0 0 calc(33.333% - 20px);
   }
@@ -4231,11 +4238,11 @@ body {
   }
   
   .prev-btn {
-    left: -22px;
+    left: 5px;
   }
   
   .next-btn {
-    right: -22px;
+    right: 5px;
   }
 }
 
@@ -4254,6 +4261,10 @@ body {
  
   .section-subtitle {
     font-size: 15px;
+  }
+  
+  .alumni-slider-container {
+    padding: 0 50px;
   }
   
   .alumni-card {
@@ -4287,11 +4298,11 @@ body {
   }
   
   .prev-btn {
-    left: -20px;
+    left: 5px;
   }
   
   .next-btn {
-    right: -20px;
+    right: 5px;
   }
   
   .slider-pagination {
@@ -4318,26 +4329,30 @@ body {
   }
   
   .alumni-slider-container {
-    padding: 0 10px;
+    padding: 0 40px;
     margin: 0 auto;
-    max-width: 350px;
+    max-width: 100%;
   }
   
   .alumni-slider-wrapper {
-    margin: 0 20px;
+    margin: 0;
     border-radius: 16px;
+    overflow: hidden;
   }
   
   .alumni-card {
-    flex: 0 0 100%;
-    margin: 0 5px;
+    flex: 0 0 calc(100% - 20px);
+    margin: 0 10px;
     padding: 25px 20px;
     border-radius: 16px;
+    width: calc(100% - 20px);
+    box-sizing: border-box;
   }
   
   .alumni-slider {
-    gap: 0;
+    gap: 20px;
     padding: 0 10px;
+    width: 100%;
   }
  
   .alumni-image {
@@ -4371,11 +4386,11 @@ body {
   }
   
   .prev-btn {
-    left: -15px;
+    left: 5px;
   }
   
   .next-btn {
-    right: -15px;
+    right: 5px;
   }
   
   .slider-pagination {
