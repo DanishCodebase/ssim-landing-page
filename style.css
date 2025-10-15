@@ -3677,6 +3677,81 @@ body {
   } */
 }
 
+/* Academic Table Responsive Design */
+@media (max-width: 1200px) {
+  .academic-table {
+    font-size: 15px;
+    min-width: 850px;
+  }
+  
+  .academic-table th,
+  .academic-table td {
+    padding: 18px 16px;
+  }
+  
+  .criteria-cell {
+    padding: 20px 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .academic-table {
+    font-size: 14px;
+    min-width: 750px;
+  }
+  
+  .academic-table th {
+    font-size: 13px;
+    padding: 16px 12px;
+  }
+  
+  .academic-table td {
+    padding: 16px 12px;
+  }
+  
+  .criteria-cell {
+    padding: 18px 12px;
+    font-size: 13px;
+  }
+  
+  .amount-cell {
+    font-size: 14px;
+  }
+  
+  .total-cell {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .academic-table {
+    font-size: 13px;
+    min-width: 650px;
+  }
+  
+  .academic-table th {
+    font-size: 12px;
+    padding: 14px 10px;
+  }
+  
+  .academic-table td {
+    padding: 14px 10px;
+  }
+  
+  .criteria-cell {
+    padding: 16px 10px;
+    font-size: 12px;
+  }
+  
+  .amount-cell {
+    font-size: 13px;
+  }
+  
+  .total-cell {
+    font-size: 14px;
+  }
+}
+
 /* Animation classes for JavaScript */
 .scholarship-section {
   opacity: 0;
@@ -3724,4 +3799,97 @@ body {
 .scholarship-table tbody tr:focus {
   outline: 2px solid #3b82f6;
   outline-offset: 2px;
+}
+
+/* Academic Background Scholarship Table Styles */
+.scholarship-section .container + .container {
+  margin-top: 40px;
+}
+
+.academic-table {
+  font-size: 16px;
+  min-width: 900px;
+}
+
+.academic-table th {
+  padding: 24px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1e293b;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-right: 1px solid #e2e8f0;
+  text-align: center;
+}
+
+.academic-table th:first-child {
+  text-align: left;
+  width: 50%;
+}
+
+.academic-table th:last-child {
+  border-right: none;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  color: #0369a1;
+  font-weight: 700;
+}
+
+.academic-table td {
+  padding: 20px;
+  border-right: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f8fafc;
+  transition: background-color 0.3s ease;
+}
+
+.academic-table td:last-child {
+  border-right: none;
+}
+
+.criteria-cell {
+  text-align: left;
+  color: #374151;
+  font-weight: 500;
+  line-height: 1.6;
+  padding: 24px 20px;
+}
+
+.amount-cell {
+  text-align: center;
+  color: #059669;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 20px;
+}
+
+.total-cell {
+  text-align: center;
+  color: #0369a1;
+  font-weight: 700;
+  font-size: 16px;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  padding: 20px;
+}
+
+.academic-table tbody tr:nth-child(even) {
+  background: #fafbfc;
+}
+
+.academic-table tbody tr:nth-child(odd) {
+  background: white;
+}
+
+.academic-table tbody tr:hover {
+  background: #f0f9ff;
+}
+
+.academic-table tbody tr:hover .criteria-cell {
+  color: #1e40af;
+}
+
+.academic-table tbody tr:hover .amount-cell {
+  color: #047857;
+}
+
+.academic-table tbody tr:hover .total-cell {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  color: #1e40af;
 }

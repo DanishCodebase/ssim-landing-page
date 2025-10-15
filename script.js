@@ -318,7 +318,9 @@ document.addEventListener("DOMContentLoaded", () => {
 function initializeScholarshipSection() {
     const scholarshipTable = document.querySelector('.scholarship-table');
     const tableRows = document.querySelectorAll('.scholarship-table tbody tr');
-    const criteriaBox = document.querySelector('.criteria-box');
+    const academicTable = document.querySelector('.academic-table');
+    const academicTableRows = document.querySelectorAll('.academic-table tbody tr');
+    const criteriaBoxes = document.querySelectorAll('.criteria-box');
     
     if (!scholarshipTable || !tableRows.length) return;
 
@@ -350,15 +352,33 @@ function initializeScholarshipSection() {
         });
     });
 
-    // Criteria box interaction
-    if (criteriaBox) {
-        criteriaBox.addEventListener('click', function() {
-            this.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                this.style.transform = '';
-            }, 150);
+    // Academic table row interactions
+    if (academicTable && academicTableRows.length) {
+        academicTableRows.forEach((row, index) => {
+            // Add staggered animation delay
+            row.style.animationDelay = `${(index + tableRows.length) * 0.1}s`;
+            
+            // Add click interaction for mobile
+            row.addEventListener('click', function() {
+                // Remove active class from all academic rows
+                academicTableRows.forEach(r => r.classList.remove('active'));
+                // Add active class to clicked row
+                this.classList.add('active');
+            });
         });
     }
+
+    // Criteria box interactions
+    criteriaBoxes.forEach(criteriaBox => {
+        if (criteriaBox) {
+            criteriaBox.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        }
+    });
 
     // Add table sorting functionality (optional enhancement)
     addTableSorting();
