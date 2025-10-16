@@ -310,6 +310,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Scholarship Banner Section Animation
+    initializeScholarshipBanner();
+
     // Scholarship Section Enhancements
     initializeScholarshipSection();
     
@@ -675,4 +678,101 @@ function initializeAlumniSlider() {
             card.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)';
         });
     });
+}
+
+// Scholarship Banner Section Animation
+function initializeScholarshipBanner() {
+    const scholarshipBanner = document.querySelector('.scholarship-banner-section');
+    
+    if (!scholarshipBanner) return;
+
+    // Intersection Observer for scroll reveal animation
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                
+                // Add sequential animations for content elements
+                const title = entry.target.querySelector('.scholarship-banner-title');
+                const amountBox = entry.target.querySelector('.scholarship-amount-box');
+                const note = entry.target.querySelector('.scholarship-banner-note');
+                
+                if (title) {
+                    title.style.animationDelay = '0s';
+                }
+                if (amountBox) {
+                    amountBox.style.animationDelay = '0.2s';
+                }
+                if (note) {
+                    note.style.animationDelay = '0.4s';
+                }
+                
+                // Unobserve after animation to prevent re-triggering
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { 
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    observer.observe(scholarshipBanner);
+
+    // Add hover effect to the amount box with ripple effect
+    const amountBox = scholarshipBanner.querySelector('.scholarship-amount-box');
+    if (amountBox) {
+        amountBox.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.05)';
+            this.style.boxShadow = '0 15px 50px rgba(0, 0, 0, 0.4)';
+        });
+        
+        amountBox.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+            this.style.boxShadow = '0 10px 40px rgba(0, 0, 0, 0.3)';
+        });
+
+        // Add click ripple effect
+        amountBox.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.className = 'scholarship-ripple';
+            
+            // Add CSS for ripple if not exists
+            if (!document.querySelector('#scholarship-ripple-style')) {
+                const style = document.createElement('style');
+                style.id = 'scholarship-ripple-style';
+                style.textContent = `
+                    .scholarship-ripple {
+                        position: absolute;
+                        border-radius: 50%;
+                        background: rgba(255, 255, 255, 0.5);
+                        transform: scale(0);
+                        animation: scholarship-ripple-animation 0.6s linear;
+                        pointer-events: none;
+                    }
+                    
+                    @keyframes scholarship-ripple-animation {
+                        to {
+                            transform: scale(2);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    }
 }
