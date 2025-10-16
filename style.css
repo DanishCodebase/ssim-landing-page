@@ -4229,7 +4229,11 @@ body {
   }
   
   .alumni-card {
-    flex: 0 0 calc(33.333% - 14px);
+    flex: 0 0 calc(33.333% - 13.333px);
+  }
+  
+  .alumni-slider {
+    gap: 20px;
   }
   
   .alumni-header .section-title {
@@ -4345,7 +4349,7 @@ body {
   }
   
   .alumni-card {
-    flex: 0 0 calc(100% - 20px);
+    flex: 0 0 100%;
     padding: 25px 20px;
     border-radius: 16px;
     box-sizing: border-box;
@@ -4354,7 +4358,6 @@ body {
   .alumni-slider {
     gap: 20px;
     width: 100%;
-    padding: 0 10px;
   }
  
   .alumni-image {

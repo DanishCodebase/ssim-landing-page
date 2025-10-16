@@ -478,24 +478,34 @@ function initializeAlumniSlider() {
 
     // Function to update slider position (one card at a time)
     function updateSlider() {
-        // Get the actual gap value from CSS (20px)
-        const gapInPx = 20;
-        const sliderWidth = slider.offsetWidth;
-        const gapInPercent = (gapInPx / sliderWidth) * 100;
+        // Calculate the actual card width including gap
+        const cards = slider.querySelectorAll('.alumni-card');
+        if (cards.length === 0) return;
         
-        // Calculate card width including gap
-        const cardWidth = 100 / cardsPerView;
+        const firstCard = cards[0];
+        const cardRect = firstCard.getBoundingClientRect();
+        const sliderRect = slider.getBoundingClientRect();
         
-        // Calculate translation with gap adjustment
-        const translateX = -(currentIndex * (cardWidth + (gapInPercent / cardsPerView)));
+        // Get computed gap
+        const computedStyle = window.getComputedStyle(slider);
+        const gap = parseFloat(computedStyle.gap) || 20;
+        
+        // Calculate the total width including gap that we need to move per slide
+        const moveWidth = cardRect.width + gap;
+        const movePercent = (moveWidth / sliderRect.width) * 100;
+        
+        // Calculate translation
+        const translateX = -(currentIndex * movePercent);
         
         slider.style.transform = `translateX(${translateX}%)`;
         
         console.log('Alumni slider update:', {
             currentIndex,
             cardsPerView,
-            cardWidth,
-            gapInPercent,
+            cardWidth: cardRect.width,
+            gap,
+            moveWidth,
+            movePercent,
             translateX,
             totalCards,
             maxIndex: getMaxIndex()
