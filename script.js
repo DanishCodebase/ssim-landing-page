@@ -440,128 +440,141 @@ function sortTableByColumn(table, columnIndex) {
     table.setAttribute('data-sort-direction', isAscending ? 'asc' : 'desc');
 }
 
-// Alumni Slider Interactive Features
+// Alumni Slider Interactive Features (custom one-by-one sliding)
 function initializeAlumniSlider() {
-    const slider = document.querySelector('.alumni-slider');
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
-    const pagination = document.querySelector('.slider-pagination');
-    
-    if (!slider || !prevBtn || !nextBtn || !pagination) {
-        console.error('Alumni slider elements not found:', {
-            slider: !!slider,
-            prevBtn: !!prevBtn,
-            nextBtn: !!nextBtn,
-            pagination: !!pagination
-        });
-        return;
-    }
+    const sliderContainer = document.querySelector('.alumni-slider-container');
+    if (!sliderContainer) return;
 
-    const cards = slider.querySelectorAll('.alumni-card');
-    const totalCards = cards.length;
-    let currentSlide = 0;
-    let cardsPerSlide = 4; // Default for large screens
+    const slider = sliderContainer.querySelector('.alumni-slider');
+    const indicatorsContainer = sliderContainer.querySelector('.slider-pagination');
+    const prevBtn = sliderContainer.querySelector('.prev-btn');
+    const nextBtn = sliderContainer.querySelector('.next-btn');
 
-    // Function to update cards per slide based on screen size
-    function updateCardsPerSlide() {
+    if (!slider) return;
+
+    const slides = slider.querySelectorAll('.alumni-card');
+    const totalCards = slides.length;
+    let currentIndex = 0;
+    let cardsPerView = 4; // Always show 4 cards on desktop
+    let autoSlideInterval;
+
+    // Function to update cards per view based on screen size
+    function updateCardsPerView() {
         if (window.innerWidth <= 480) {
-            cardsPerSlide = 1;
+            cardsPerView = 1;
         } else if (window.innerWidth <= 768) {
-            cardsPerSlide = 2;
-        } else if (window.innerWidth <= 1200) {
-            cardsPerSlide = 3;
+            cardsPerView = 2;
+        } else if (window.innerWidth <= 1024) {
+            cardsPerView = 3;
         } else {
-            cardsPerSlide = 4;
+            cardsPerView = 4; // Desktop shows 4 cards
         }
     }
 
-    // Function to calculate total slides
-    function getTotalSlides() {
-        return Math.ceil(totalCards / cardsPerSlide);
+    // Function to calculate maximum starting index for one-by-one sliding
+    function getMaxIndex() {
+        return Math.max(0, totalCards - cardsPerView);
     }
 
-    // Function to update slider position
+    // Function to update slider position (one card at a time)
     function updateSlider() {
-        const slideWidth = 100 / cardsPerSlide;
-        const translateX = -(currentSlide * slideWidth);
+        // Get the actual gap value from CSS (20px)
+        const gapInPx = 20;
+        const sliderWidth = slider.offsetWidth;
+        const gapInPercent = (gapInPx / sliderWidth) * 100;
+        
+        // Calculate card width including gap
+        const cardWidth = 100 / cardsPerView;
+        
+        // Calculate translation with gap adjustment
+        const translateX = -(currentIndex * (cardWidth + (gapInPercent / cardsPerView)));
+        
         slider.style.transform = `translateX(${translateX}%)`;
         
-        // Debug logging
-        console.log('Slider update:', {
-            currentSlide,
-            cardsPerSlide,
-            slideWidth,
-            translateX
+        console.log('Alumni slider update:', {
+            currentIndex,
+            cardsPerView,
+            cardWidth,
+            gapInPercent,
+            translateX,
+            totalCards,
+            maxIndex: getMaxIndex()
         });
         
-        // Update pagination
         updatePagination();
-        
-        // Update navigation buttons
         updateNavigationButtons();
     }
 
     // Function to update pagination dots
     function updatePagination() {
-        pagination.innerHTML = '';
-        const totalSlides = getTotalSlides();
+        if (!indicatorsContainer) return;
         
-        for (let i = 0; i < totalSlides; i++) {
+        indicatorsContainer.innerHTML = '';
+        const totalPositions = getMaxIndex() + 1;
+        
+        for (let i = 0; i < totalPositions; i++) {
             const dot = document.createElement('button');
-            dot.className = `pagination-dot ${i === currentSlide ? 'active' : ''}`;
+            dot.className = `indicator ${i === currentIndex ? 'active' : ''}`;
             dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
             
             dot.addEventListener('click', () => {
-                currentSlide = i;
+                currentIndex = i;
                 updateSlider();
             });
             
-            pagination.appendChild(dot);
+            indicatorsContainer.appendChild(dot);
         }
     }
 
     // Function to update navigation buttons
     function updateNavigationButtons() {
-        const totalSlides = getTotalSlides();
-        prevBtn.disabled = currentSlide === 0;
-        nextBtn.disabled = currentSlide === totalSlides - 1;
+        if (prevBtn) prevBtn.disabled = currentIndex === 0;
+        if (nextBtn) nextBtn.disabled = currentIndex >= getMaxIndex();
     }
 
     // Navigation event listeners
-    prevBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        console.log('Prev button clicked, currentSlide:', currentSlide);
-        if (currentSlide > 0) {
-            currentSlide--;
-            updateSlider();
-        }
-    });
-
-    nextBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        const totalSlides = getTotalSlides();
-        console.log('Next button clicked, currentSlide:', currentSlide, 'totalSlides:', totalSlides);
-        if (currentSlide < totalSlides - 1) {
-            currentSlide++;
-            updateSlider();
-        }
-    });
-
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft' && currentSlide > 0) {
-            currentSlide--;
-            updateSlider();
-        } else if (e.key === 'ArrowRight') {
-            const totalSlides = getTotalSlides();
-            if (currentSlide < totalSlides - 1) {
-                currentSlide++;
+    if (prevBtn) {
+        prevBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (currentIndex > 0) {
+                currentIndex--;
                 updateSlider();
             }
-        }
-    });
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (currentIndex < getMaxIndex()) {
+                currentIndex++;
+                updateSlider();
+            }
+        });
+    }
+
+    // Auto-play functionality
+    function startAutoPlay() {
+        stopAutoPlay();
+        autoSlideInterval = setInterval(() => {
+            if (currentIndex < getMaxIndex()) {
+                currentIndex++;
+            } else {
+                currentIndex = 0; // Loop back to first
+            }
+            updateSlider();
+        }, 5000);
+    }
+
+    function stopAutoPlay() {
+        clearInterval(autoSlideInterval);
+    }
+
+    // Pause auto-play on hover
+    slider.addEventListener('mouseenter', stopAutoPlay);
+    slider.addEventListener('mouseleave', startAutoPlay);
 
     // Touch/swipe support
     let startX = 0;
@@ -594,69 +607,29 @@ function initializeAlumniSlider() {
         const diff = startX - endX;
 
         if (Math.abs(diff) > swipeThreshold) {
-            if (diff > 0 && currentSlide < getTotalSlides() - 1) {
-                // Swipe left - next slide
-                currentSlide++;
+            if (diff > 0 && currentIndex < getMaxIndex()) {
+                // Swipe left - next card
+                currentIndex++;
                 updateSlider();
-            } else if (diff < 0 && currentSlide > 0) {
-                // Swipe right - previous slide
-                currentSlide--;
+            } else if (diff < 0 && currentIndex > 0) {
+                // Swipe right - previous card
+                currentIndex--;
                 updateSlider();
             }
         }
     }
 
-    // Auto-play functionality (optional)
-    let autoPlayInterval;
-    
-    function startAutoPlay() {
-        autoPlayInterval = setInterval(() => {
-            const totalSlides = getTotalSlides();
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateSlider();
-        }, 5000); // Change slide every 5 seconds
-    }
-
-    function stopAutoPlay() {
-        clearInterval(autoPlayInterval);
-    }
-
-    // Pause auto-play on hover
-    const sliderContainer = document.querySelector('.alumni-slider-container');
-    if (sliderContainer) {
-        sliderContainer.addEventListener('mouseenter', stopAutoPlay);
-        sliderContainer.addEventListener('mouseleave', startAutoPlay);
-    }
-
     // Initialize slider
-    updateCardsPerSlide();
+    updateCardsPerView();
     updateSlider();
     startAutoPlay();
     
-    // Debug logging
-    console.log('Alumni slider initialized:', {
-        totalCards,
-        cardsPerSlide,
-        totalSlides: getTotalSlides(),
-        currentSlide
-    });
-    
-    // Force initial update
-    setTimeout(() => {
-        updateSlider();
-    }, 100);
-    
-    // Test function for debugging
-    window.testSlider = () => {
-        console.log('Testing slider...');
-        currentSlide = (currentSlide + 1) % getTotalSlides();
-        updateSlider();
-    };
-
     // Update on resize
     window.addEventListener('resize', () => {
-        updateCardsPerSlide();
-        currentSlide = 0; // Reset to first slide
+        updateCardsPerView();
+        if (currentIndex > getMaxIndex()) {
+            currentIndex = getMaxIndex();
+        }
         updateSlider();
     });
 
@@ -668,9 +641,8 @@ function initializeAlumniSlider() {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('animate-in');
-                        // Add staggered animation to cards
-                        cards.forEach((card, index) => {
-                            card.style.animationDelay = `${index * 0.1}s`;
+                        slides.forEach((slide, index) => {
+                            slide.style.animationDelay = `${index * 0.1}s`;
                         });
                     }
                 });
@@ -682,7 +654,7 @@ function initializeAlumniSlider() {
     }
 
     // Add hover effects to cards
-    cards.forEach((card) => {
+    slides.forEach((card) => {
         card.addEventListener('mouseenter', () => {
             card.style.transform = 'translateY(-8px) scale(1.02)';
             card.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.15)';

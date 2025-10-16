@@ -3979,25 +3979,28 @@ body {
   position: relative;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 60px;
+  padding: 0 80px;
 }
 
 .alumni-slider-wrapper {
   position: relative;
   overflow: hidden;
   border-radius: 20px;
+  margin: 0;
 }
 
 .alumni-slider {
   display: flex;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  gap: 30px;
+  gap: 20px;
   touch-action: pan-y;
   will-change: transform;
+  width: 100%;
+  flex-wrap: nowrap;
 }
 
 .alumni-card {
-  flex: 0 0 calc(25% - 22.5px);
+  flex: 0 0 calc(25% - 15px);
   min-width: 0;
   background: white;
   padding: 30px 20px;
@@ -4012,6 +4015,7 @@ body {
   position: relative;
   overflow: hidden;
   backdrop-filter: blur(10px);
+  box-sizing: border-box;
 }
 
 .alumni-card::before {
@@ -4094,7 +4098,7 @@ body {
 }
 
 .company-logo-img {
-  height: 50px;
+  height: 25px;
   object-fit: contain;
   filter: grayscale(100%);
   opacity: 0.8;
@@ -4221,11 +4225,11 @@ body {
 /* Alumni Slider Responsive Design */
 @media (max-width: 1200px) {
   .alumni-slider-container {
-    padding: 0 50px;
+    padding: 0 60px;
   }
   
   .alumni-card {
-    flex: 0 0 calc(33.333% - 20px);
+    flex: 0 0 calc(33.333% - 14px);
   }
   
   .alumni-header .section-title {
@@ -4264,11 +4268,11 @@ body {
   }
   
   .alumni-slider-container {
-    padding: 0 50px;
+    padding: 0 40px;
   }
   
   .alumni-card {
-    flex: 0 0 calc(50% - 15px);
+    flex: 0 0 calc(50% - 10px);
   }
   
   .alumni-slider {
@@ -4342,17 +4346,15 @@ body {
   
   .alumni-card {
     flex: 0 0 calc(100% - 20px);
-    margin: 0 10px;
     padding: 25px 20px;
     border-radius: 16px;
-    width: calc(100% - 20px);
     box-sizing: border-box;
   }
   
   .alumni-slider {
     gap: 20px;
-    padding: 0 10px;
     width: 100%;
+    padding: 0 10px;
   }
  
   .alumni-image {
