@@ -3928,8 +3928,8 @@ body {
   font-weight: 600;
   color: #1e293b;
   text-align: center;
-  margin-bottom: 40px;
-  padding: 24px;
+  margin-bottom: 20px;
+  padding: 10px;
   background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
   /* border-radius: 12px; */
   border: 1px solid #e2e8f0;
@@ -4041,8 +4041,8 @@ body {
 
   .table-title {
     font-size: 20px;
-    padding: 20px;
-    margin-bottom: 25px;
+    padding: 10px;
+    margin-bottom: 10px;
   }
 
   .scholarship-table {
@@ -4072,7 +4072,7 @@ body {
 
   .table-title {
     font-size: 18px;
-    padding: 18px;
+    padding: 10px;
   }
 
   .scholarship-table {
@@ -4807,6 +4807,288 @@ body {
 
   .pagination-dot.active {
     transform: scale(1.2);
+  }
+}
+
+/* Criteria-3 Table Specific Styles */
+.criteria-3-table {
+  font-size: 15px;
+  min-width: 900px;
+}
+
+.criteria-3-table th {
+  padding: 20px 16px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1e293b;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-right: 1px solid #e2e8f0;
+  text-align: center;
+}
+
+.criteria-3-table th:first-child {
+  text-align: center;
+  width: 25%;
+}
+
+.criteria-3-table th:nth-child(2) {
+  width: 35%;
+}
+
+.criteria-3-table th:last-child {
+  border-right: none;
+  width: 40%;
+}
+
+.criteria-3-table td {
+  padding: 20px 18px;
+  border-right: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f8fafc;
+  transition: background-color 0.3s ease;
+  vertical-align: middle;
+}
+
+.criteria-3-table td:last-child {
+  border-right: none;
+}
+
+.institution-cell {
+  text-align: center;
+  color: #1e40af;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.eligibility-cell {
+  text-align: center;
+  color: #374151;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.scholarship-amount-cell {
+  text-align: center;
+  color: #374151;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.scholarship-amount-cell strong {
+  color: #059669;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.criteria-3-table tbody tr:nth-child(even) {
+  background: #fafbfc;
+}
+
+.criteria-3-table tbody tr:nth-child(odd) {
+  background: white;
+}
+
+.criteria-3-table tbody tr:hover {
+  background: #f0f9ff;
+}
+
+.criteria-3-table tbody tr:hover .institution-cell {
+  color: #1e40af;
+  transform: scale(1.02);
+}
+
+.criteria-3-table tbody tr:hover .scholarship-amount-cell strong {
+  color: #047857;
+}
+
+/* President Scholarship Banner */
+.president-scholarship-banner {
+  margin-top: 40px;
+  margin-bottom: 30px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  padding: 25px 35px;
+  border-left: 5px solid #fbbf24;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+}
+
+.president-scholarship-text {
+  color: #ffffff;
+  font-size: 17px;
+  line-height: 1.7;
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.president-scholarship-text .highlight-text {
+  color: #fbbf24;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.president-scholarship-text .highlight-amount {
+  color: #fbbf24;
+  font-weight: 800;
+  font-size: 20px;
+  padding: 0 4px;
+}
+
+/* Scholarship Notes */
+.scholarship-notes {
+  margin-top: 30px;
+  padding: 25px 30px;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-left: 4px solid #3b82f6;
+  border-radius: 0;
+}
+
+.notes-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notes-list li {
+  color: #475569;
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+  padding-left: 25px;
+  position: relative;
+}
+
+.notes-list li:last-child {
+  margin-bottom: 0;
+}
+
+.note-bullet {
+  position: absolute;
+  left: 0;
+  color: #3b82f6;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+/* Criteria-3 Responsive Design */
+@media (max-width: 1200px) {
+  .criteria-3-table {
+    font-size: 14px;
+    min-width: 850px;
+  }
+
+  .criteria-3-table th,
+  .criteria-3-table td {
+    padding: 18px 14px;
+  }
+
+  .president-scholarship-text {
+    font-size: 16px;
+  }
+
+  .president-scholarship-text .highlight-amount {
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 768px) {
+  .criteria-3-table {
+    font-size: 13px;
+    min-width: 750px;
+  }
+
+  .criteria-3-table th {
+    font-size: 13px;
+    padding: 16px 12px;
+  }
+
+  .criteria-3-table td {
+    padding: 16px 12px;
+  }
+
+  .institution-cell,
+  .eligibility-cell {
+    font-size: 14px;
+  }
+
+  .scholarship-amount-cell strong {
+    font-size: 15px;
+  }
+
+  .president-scholarship-banner {
+    padding: 20px 25px;
+    margin-top: 30px;
+    margin-bottom: 25px;
+  }
+
+  .president-scholarship-text {
+    font-size: 15px;
+  }
+
+  .president-scholarship-text .highlight-amount {
+    font-size: 18px;
+  }
+
+  .scholarship-notes {
+    padding: 20px 25px;
+  }
+
+  .notes-list li {
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .criteria-3-table {
+    font-size: 12px;
+    min-width: 650px;
+  }
+
+  .criteria-3-table th {
+    font-size: 12px;
+    padding: 14px 10px;
+  }
+
+  .criteria-3-table td {
+    padding: 14px 10px;
+  }
+
+  .institution-cell,
+  .eligibility-cell {
+    font-size: 13px;
+  }
+
+  .scholarship-amount-cell strong {
+    font-size: 14px;
+  }
+
+  .president-scholarship-banner {
+    padding: 18px 20px;
+    border-left-width: 3px;
+  }
+
+  .president-scholarship-text {
+    font-size: 14px;
+  }
+
+  .president-scholarship-text .highlight-amount {
+    font-size: 17px;
+  }
+
+  .scholarship-notes {
+    padding: 18px 20px;
+    border-left-width: 3px;
+  }
+
+  .notes-list li {
+    font-size: 13px;
+    margin-bottom: 12px;
+    padding-left: 20px;
+  }
+
+  .note-bullet {
+    font-size: 16px;
   }
 }
 
