@@ -5092,6 +5092,33 @@ body {
   }
 }
 
+/* Reduce excess vertical spacing in the student and alumni sections on mobile. */
+@media (max-width: 767px) {
+  .student-speak-section {
+    padding: 32px 0;
+  }
+
+  .student-speak-container .section-title {
+    margin: 0 0 24px;
+  }
+
+  .alumni-testimonials-section {
+    padding: 28px 0;
+  }
+
+  .alumni-testimonials-section > .container {
+    margin: 0 auto;
+  }
+
+  .alumni-header {
+    margin-bottom: 20px;
+  }
+
+  .alumni-header .section-title {
+    margin-bottom: 8px;
+  }
+}
+
 /* Alumni Section Animation Classes */
 .alumni-testimonials-section {
   opacity: 0;
